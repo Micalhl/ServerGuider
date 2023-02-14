@@ -1,0 +1,38 @@
+title: "TechBedrock - 指引"
+shape:
+  - '         '
+  - ' AAAAAAA '
+  - ' AAAAAAA '
+  - ' AAAAAAA '
+  - ' AAAAAAA '
+  - '  P X N  '
+
+template:
+  'X':
+    material: BARRIER
+    name: "&c&l关闭菜单"
+    feature:
+      - ==: Close
+  'P':
+    material: ARROW
+    name: "&r上一页"
+    feature: Previous
+  'N':
+    material: ARROW
+    name: "&r下一页"
+    feature: Next
+  'A':
+    material: PLAYER_HEAD
+    name: "&f{name}"
+    lore:
+      - "是否阅读过:"
+      - ""
+      - "&f左键 打开偏好设置"
+    feature:
+      - ==: Functional
+        keyword: Guide$open
+      - ==: Functional
+        keyword: Guide$information
+        option:
+          yes: "&a是"
+          no: "&c否"
