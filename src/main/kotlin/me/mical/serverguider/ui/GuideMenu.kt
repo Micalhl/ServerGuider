@@ -2,11 +2,8 @@ package me.mical.serverguider.ui
 
 import me.mical.serverguider.database.PluginDatabase
 import me.mical.serverguider.guide.GuideReader
-import org.bukkit.enchantments.Enchantment
+import org.bukkit.Material
 import org.bukkit.entity.Player
-import org.bukkit.event.inventory.ClickType
-import org.bukkit.inventory.ItemFlag
-import org.bukkit.inventory.meta.ItemMeta
 import org.serverct.parrot.parrotx.function.singletons
 import org.serverct.parrot.parrotx.mechanism.Reloadable
 import org.serverct.parrot.parrotx.ui.MenuComponent
@@ -18,7 +15,6 @@ import taboolib.module.configuration.Config
 import taboolib.module.configuration.Configuration
 import taboolib.module.ui.openMenu
 import taboolib.module.ui.type.Linked
-import taboolib.platform.util.modifyMeta
 
 /**
  * ServerGuider
@@ -45,7 +41,6 @@ object GuideMenu {
             config = MenuConfiguration(source)
         }
         player.openMenu<Linked<Pair<String, List<String>>>>(config.title().colored()) {
-            virtualize()
             val (shape, templates) = config
             rows(shape.rows)
             val slots = shape["Guide\$information"].toList()
@@ -60,10 +55,11 @@ object GuideMenu {
 
             val template = templates.require("Guide\$information")
             onGenerate { _, member, index, slot ->
-                template(slot, index, PluginDatabase.read(player.uniqueId.toString(), member.first))
+                template(slot, index, PluginDatabase.read(player.uniqueId.toString(), member.first), member.first)
             }
 
             onClick { event, member ->
+                event.isCancelled = true
                 template.handle(event, member.first)
             }
 
@@ -94,22 +90,19 @@ object GuideMenu {
             val state = args[0].cbool
             icon.singletons {
                 when (it) {
-                    "option" -> if (state) extra["option.yes"].toString().colored() else extra["option.no"].toString().colored()
+                    "name" -> args[1].toString()
+                    "option" -> if (state) extra["read"].toString().colored() else extra["or"].toString().colored()
                     else -> null
-                }
-            }.modifyMeta<ItemMeta> {
-                if (state) {
-                    addItemFlags(ItemFlag.HIDE_ENCHANTS)
                 }
             }.also {
                 if (state) {
-                    it.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1)
+                    it.type = Material.WRITTEN_BOOK
                 }
             }
         }
 
         onClick { (_, _, event, args) ->
-            if (event.virtualEvent().clickType == ClickType.LEFT) {
+            if (event.clickEvent().isLeftClick) {
                 GuideReader.open(event.clicker, args[0].toString())
             }
         }

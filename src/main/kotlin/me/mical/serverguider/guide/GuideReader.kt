@@ -3,6 +3,7 @@ package me.mical.serverguider.guide
 import me.mical.serverguider.database.PluginDatabase
 import net.kyori.adventure.inventory.Book
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.entity.Player
 import taboolib.common.LifeCycle
 import taboolib.common.io.newFolder
@@ -40,7 +41,7 @@ object GuideReader {
 
     fun open(player: Player, name: String) {
         val content = guides.values.first { it.first == name }.second
-        val book = Book.book(Component.text("指引书"), Component.text("Fischlandaz"), content.map { Component.text(it.replacePlaceholder(player)) })
+        val book = Book.book(Component.text("指引书"), Component.text("Fischlandaz"), content.map { MiniMessage.miniMessage().deserialize(it.replacePlaceholder(player)) })
         try {
             player.invokeMethod<Any>("openBook", book)
             player.sendLang("open-guide", name)

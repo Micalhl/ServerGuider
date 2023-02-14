@@ -22,17 +22,14 @@ template:
     name: "&r下一页"
     feature: Next
   'A':
-    material: PLAYER_HEAD
+    material: BOOK
     name: "&f{name}"
     lore:
-      - "是否阅读过:"
+      - "&f是否阅读过: {option}"
       - ""
-      - "&f左键 打开偏好设置"
+      - "&f左键打开"
     feature:
       - ==: Functional
-        keyword: Guide$open
-      - ==: Functional
         keyword: Guide$information
-        option:
-          yes: "&a是"
-          no: "&c否"
+        read: "&a是"
+        or: "&c否"

@@ -8,6 +8,7 @@ plugins {
 taboolib {
     install("common")
     install("common-5")
+    install("module-nms")
     install("module-database")
     install("module-ui")
     install("module-lang")

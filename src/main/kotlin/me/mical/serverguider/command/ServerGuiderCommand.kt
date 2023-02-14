@@ -13,10 +13,10 @@ import taboolib.common.platform.command.mainCommand
  * @author xiaomu
  * @since 2023/2/14 10:53 PM
  */
-@CommandHeader(name = "serverguider", aliases = ["sg", "guider"])
+@CommandHeader(name = "serverguider", aliases = ["sg", "guide"], permission = "serverguider.use")
 object ServerGuiderCommand {
 
-    @CommandBody
+    @CommandBody(permission = "serverguider.use")
     val main = mainCommand {
         execute<Player> { sender, _, _ ->
             GuideMenu.open(sender)
