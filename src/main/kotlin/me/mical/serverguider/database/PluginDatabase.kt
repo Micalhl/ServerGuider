@@ -18,7 +18,7 @@ import taboolib.module.database.Table
  */
 object PluginDatabase {
 
-    private val host = HostSQL(ConfigReader.config.getConfigurationSection("database") ?: error("no database section"))
+    private lateinit var host: HostSQL
 
     private val table = Table("serverguider_data", host) {
         add("user") {
@@ -34,6 +34,7 @@ object PluginDatabase {
     @Awake(LifeCycle.ENABLE)
     fun init() {
         try {
+            host = HostSQL(ConfigReader.config.getConfigurationSection("database") ?: error("no database section"))
             table.workspace(dataSource) { createTable(true) }.run()
             info("已初始化数据库.")
         } catch (ex: Throwable) {

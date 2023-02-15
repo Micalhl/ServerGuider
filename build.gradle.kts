@@ -2,13 +2,18 @@ plugins {
     `java-library`
     `maven-publish`
     id("io.izzel.taboolib") version "1.56"
-    id("org.jetbrains.kotlin.jvm") version "1.8.0"
+    id("org.jetbrains.kotlin.jvm") version "1.5.10"
 }
 
 taboolib {
+    description {
+        contributors {
+            name("Mical").description("Maintainer")
+            name("g2213swo")
+        }
+    }
     install("common")
     install("common-5")
-    install("module-nms")
     install("module-database")
     install("module-ui")
     install("module-lang")

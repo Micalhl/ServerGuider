@@ -4,3 +4,5 @@ database:
   user: root
   password: password
   database: minecraft
+author: adminstrator # 书本署名者
+name: helper # 书本名称
