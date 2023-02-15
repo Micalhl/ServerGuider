@@ -33,10 +33,12 @@ object ServerGuiderCommand {
     @CommandBody(permission = "serverguider.reload")
     val reload = subCommand {
         execute<ProxyCommandSender> { sender, _, _ ->
-            for (player in onlinePlayers){
-                if (player.inventory is MenuHolder){
+            for (player in onlinePlayers) {
+                if (player.inventory is MenuHolder) {
                     player.closeInventory()
                 }
+                // TEST
+                player.closeInventory()
             }
             ConfigReader.config.reload()
             GuideReader.load()
