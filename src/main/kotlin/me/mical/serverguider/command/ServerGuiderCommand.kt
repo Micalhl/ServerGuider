@@ -4,13 +4,12 @@ import me.mical.serverguider.guide.GuideReader
 import me.mical.serverguider.ui.GuideMenu
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
-import taboolib.common.TabooLibCommon
 import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.command.CommandBody
 import taboolib.common.platform.command.CommandHeader
 import taboolib.common.platform.command.mainCommand
 import taboolib.common.platform.command.subCommand
-import taboolib.module.ui.virtual.InventoryHandler
+import taboolib.module.ui.MenuHolder
 
 /**
  * ServerGuider
@@ -32,7 +31,7 @@ object ServerGuiderCommand {
     val reload = subCommand {
         execute<ProxyCommandSender> { sender, _, _ ->
             for (player in Bukkit.getOnlinePlayers()){
-                if (player.inventory is InventoryHandler){
+                if (player.inventory is MenuHolder){
                     player.closeInventory()
                 }
             }
