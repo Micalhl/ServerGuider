@@ -1,7 +1,6 @@
 package me.mical.serverguider.command
 
 import me.mical.serverguider.ConfigReader
-import me.mical.serverguider.database.PluginDatabase
 import me.mical.serverguider.guide.GuideReader
 import me.mical.serverguider.ui.GuideMenu
 import org.bukkit.entity.Player
@@ -40,7 +39,6 @@ object ServerGuiderCommand {
                 }
             }
             ConfigReader.config.reload()
-            PluginDatabase.init()
             GuideReader.load()
             GuideMenu.reload()
             sender.sendLang("plugin-reload")
