@@ -12,6 +12,7 @@ import taboolib.common.platform.command.mainCommand
 import taboolib.common.platform.command.subCommand
 import taboolib.library.reflex.Reflex.Companion.invokeMethod
 import taboolib.module.database.Host
+import taboolib.module.lang.sendLang
 import taboolib.module.ui.MenuHolder
 import taboolib.platform.util.onlinePlayers
 
@@ -45,7 +46,7 @@ object ServerGuiderCommand {
             PluginDatabase.init()
             GuideReader.load()
             GuideMenu.reload()
-            sender.sendMessage("重载完成")
+            sender.sendLang("plugin-reload")
         }
     }
 }
