@@ -31,7 +31,6 @@ object ServerGuiderCommand {
     @CommandBody(permission = "serverguider.reload")
     val reload = subCommand {
         execute<ProxyCommandSender> { sender, _, _ ->
-            GuideReader.closeOpenedBook()
             ConfigReader.config.reload()
             GuideReader.load()
             GuideMenu.reload()

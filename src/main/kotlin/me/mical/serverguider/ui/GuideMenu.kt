@@ -103,6 +103,7 @@ object GuideMenu {
 
         onClick { (_, _, event, args) ->
             if (event.clickEvent().isLeftClick) {
+                event.clicker.closeInventory()
                 GuideReader.open(event.clicker, args[0].toString())
             }
         }
