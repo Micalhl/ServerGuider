@@ -3,6 +3,7 @@ package me.mical.serverguider.command
 import me.mical.serverguider.ConfigReader
 import me.mical.serverguider.guide.GuideReader
 import me.mical.serverguider.ui.GuideMenu
+import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.command.CommandBody
@@ -35,6 +36,7 @@ object ServerGuiderCommand {
         execute<ProxyCommandSender> { sender, _, _ ->
             for (player in onlinePlayers) {
                 if (player.openInventory.topInventory.holder is MenuHolder) {
+                    player.openInventory(Bukkit.createInventory(null, 9))
                     player.closeInventory()
                 }
             }
