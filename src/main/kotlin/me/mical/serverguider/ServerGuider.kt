@@ -7,5 +7,6 @@ object ServerGuider : Plugin() {
 
     override fun onEnable() {
         info("Successfully running ServerGuider! Author: Mical")
+
     }
 }

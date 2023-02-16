@@ -5,6 +5,7 @@ import me.mical.serverguider.database.PluginDatabase
 import net.kyori.adventure.inventory.Book
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.minimessage.MiniMessage
+import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import taboolib.common.LifeCycle
 import taboolib.common.io.newFolder
@@ -12,7 +13,9 @@ import taboolib.common.platform.Awake
 import taboolib.common.platform.function.getDataFolder
 import taboolib.library.reflex.Reflex.Companion.invokeMethod
 import taboolib.module.configuration.Configuration
+import taboolib.module.ui.MenuHolder
 import taboolib.platform.compat.replacePlaceholder
+import taboolib.platform.util.onlinePlayers
 import taboolib.platform.util.sendLang
 
 /**
@@ -53,4 +56,18 @@ object GuideReader {
             throw IllegalStateException("Please use Paper!")
         }
     }
+    fun closeOpenedBook(){
+        for (player in onlinePlayers) {
+            if (player.openInventory.topInventory.holder is MenuHolder) {
+                player.openInventory(Bukkit.createInventory(null, 9))
+                player.closeInventory()
+            }
+        }
+    }
+    fun closeOpenedBook(player: Player){
+            if (player.openInventory.topInventory.holder is MenuHolder) {
+                player.openInventory(Bukkit.createInventory(null, 9))
+                player.closeInventory()
+            }
+        }
 }
