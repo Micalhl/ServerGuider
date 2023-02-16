@@ -9,7 +9,7 @@ taboolib {
     description {
         contributors {
             name("Mical").description("Maintainer")
-            name("g2213swo")
+            name("g2213swo").description("MoYuDe")
         }
     }
     install("common")
