@@ -23,47 +23,47 @@ import kotlin.system.measureTimeMillis
 @CommandHeader(name = "serverguider", aliases = ["sg", "guide"], permission = "guider.use")
 object ServerGuiderCommand : CommandHandler {
 
-	override val sub: ConcurrentHashMap<String, CommandExecutor> = ConcurrentHashMap()
+    override val sub: ConcurrentHashMap<String, CommandExecutor> = ConcurrentHashMap()
 
-	@CommandBody(permission = "guider.use")
-	val open = object : CommandExecutor {
+    @CommandBody(permission = "guider.use")
+    val open = object : CommandExecutor {
 
-		override val name: String
-			get() = "open"
+        override val name: String
+            get() = "open"
 
-		override val command: SimpleCommandBody
-			get() = subCommand {
-				execute<Player> { sender, _, _ ->
-					GuideMenu.open(sender)
-				}
-			}
+        override val command: SimpleCommandBody
+            get() = subCommand {
+                execute<Player> { sender, _, _ ->
+                    GuideMenu.open(sender)
+                }
+            }
 
-		init {
-			sub[name] = this
-		}
-	}.command
+        init {
+            sub[name] = this
+        }
+    }.command
 
-	@CommandBody(permission = "guider.admin", hidden = true)
-	val reload = object : CommandExecutor {
+    @CommandBody(permission = "guider.admin", hidden = true)
+    val reload = object : CommandExecutor {
 
-		override val name: String
-			get() = "reload"
+        override val name: String
+            get() = "reload"
 
-		override val command: SimpleCommandBody
-			get() = subCommand {
-				execute<ProxyCommandSender> { sender, _, _ ->
-					measureTimeMillis {
-						ConfigReader.config.reload()
-						GuideReader.load()
-						Reloadables.execute()
-					}.let { time ->
-						sender.sendRaw("插件已成功重载, 耗时 §6${time}ms")
-					}
-				}
-			}
+        override val command: SimpleCommandBody
+            get() = subCommand {
+                execute<ProxyCommandSender> { sender, _, _ ->
+                    measureTimeMillis {
+                        ConfigReader.config.reload()
+                        GuideReader.load()
+                        Reloadables.execute()
+                    }.let { time ->
+                        sender.sendRaw("插件已成功重载, 耗时 §6${time}ms")
+                    }
+                }
+            }
 
-		init {
-			sub[name] = this
-		}
-	}.command
+        init {
+            sub[name] = this
+        }
+    }.command
 }

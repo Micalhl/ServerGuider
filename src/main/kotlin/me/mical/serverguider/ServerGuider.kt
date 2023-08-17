@@ -7,7 +7,7 @@ import taboolib.common.platform.function.info
 object ServerGuider : Plugin() {
 
     override fun onEnable() {
-		I18n.initialize()
+        I18n.initialize()
         info("Successfully running ServerGuider! Author: Mical")
     }
 }

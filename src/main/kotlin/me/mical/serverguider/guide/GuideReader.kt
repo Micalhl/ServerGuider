@@ -42,10 +42,12 @@ object GuideReader {
 
     fun open(player: Player, name: String) {
         val content = guides.values.first { it.first == name }.second
-        val book = Book.book(Component.text(ConfigReader.config.getString("name") ?: "helper"), Component.text(ConfigReader.config.getString("author") ?: "administrator"), content.map { MiniMessage.miniMessage().deserialize(it.replacePlaceholder(player)) })
+        val book = Book.book(Component.text(ConfigReader.config.getString("name")
+                ?: "helper"), Component.text(ConfigReader.config.getString("author")
+                ?: "administrator"), content.map { MiniMessage.miniMessage().deserialize(it.replacePlaceholder(player)) })
         try {
             player.invokeMethod<Any>("openBook", book)
-			player.sendLang("open-guide", "name" to name)
+            player.sendLang("open-guide", "name" to name)
             if (!PluginDatabase.read(player.uniqueId.toString(), name)) {
                 PluginDatabase.write(player.uniqueId.toString(), name)
             }
