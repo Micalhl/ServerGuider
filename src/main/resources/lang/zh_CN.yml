@@ -1,2 +1,3 @@
-open-guide: "&7[&aServerGuider&7] &a>> &f打开新手指导 &e{0}&f."
+prefix: ""
+open-guide: "&7[&aServerGuider&7] &a>> &f打开新手指导 &e{name}&f."
 plugin-reload: "&7[&aServerGuider&7] &a>> &f插件重载成功."

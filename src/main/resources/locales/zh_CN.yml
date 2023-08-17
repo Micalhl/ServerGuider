@@ -1,0 +1,36 @@
+prefix: '&8\[&{#CC9966}指导&8\] &{#CC9966}'
+command:
+  helper:
+    - ' '
+    - '  [&{#CC9966}ServerGuider](h=&7StarrySky 指导系统) &f[{pluginVersion}](h=&7插件版本: &2{pluginVersion}\n&7游戏版本: &b{minecraftVersion})'
+    - ' '
+    - '  &7命令: [&f/guider &8\[...\]](h=&f/guider &8\[...\];suggest=/guider )'
+    - '  &7参数:'
+    - '{subCommands}'
+    - ' '
+  sub:
+    - '    &8- [&f{name}](h=/guider {name} {usage}&8- &7{description};suggest=/guider {name})'
+    - '      &7{description}'
+  no-description: '没有描述'
+  no-usage: ''
+  argument-missing:
+    - '&8\[&{#CC9966}指导&8\] &7指令 &f{name} &7参数不足.'
+    - '&8\[&{#CC9966}指导&8\] &7正确用法:'
+    - '&8\[&{#CC9966}指导&8\] &f/guider {name} {usage}&8- &7{description}'
+  argument-wrong:
+    - '&8\[&{#CC9966}指导&8\] &7指令 &f{name} &7参数有误.'
+    - '&8\[&{#CC9966}指导&8\] &7正确用法:'
+    - '&8\[&{#CC9966}指导&8\] &f/guider {name} {usage}&8- &7{description}'
+  argument-unknown:
+    - '&8\[&{#CC9966}指导&8\] &7指令 &f{name} &7不存在.'
+    - '&8\[&{#CC9966}指导&8\] &7你可能想要:'
+    - '&8\[&{#CC9966}指导&8\] &f{similar}'
+  incorrect-sender: '&8\[&{#CC9966}指导&8\] &7指令 &f{name} &7只能由 &f玩家 &7执行'
+  subCommands:
+    open:
+      description: '打开帮助菜单'
+      usage: ''
+    reload:
+      description: '重载插件'
+      usage: ''
+open-guide: "&8\[&{#CC9966}指导&8\] &{#CC9966}打开新手指导 &e{name}&f."

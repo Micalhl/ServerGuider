@@ -1,5 +1,6 @@
 package me.mical.serverguider.guide
 
+import com.mcstarrysky.starrysky.i18n.sendLang
 import me.mical.serverguider.ConfigReader
 import me.mical.serverguider.database.PluginDatabase
 import net.kyori.adventure.inventory.Book
@@ -13,7 +14,6 @@ import taboolib.common.platform.function.getDataFolder
 import taboolib.library.reflex.Reflex.Companion.invokeMethod
 import taboolib.module.configuration.Configuration
 import taboolib.platform.compat.replacePlaceholder
-import taboolib.platform.util.sendLang
 
 /**
  * ServerGuider
@@ -45,7 +45,7 @@ object GuideReader {
         val book = Book.book(Component.text(ConfigReader.config.getString("name") ?: "helper"), Component.text(ConfigReader.config.getString("author") ?: "administrator"), content.map { MiniMessage.miniMessage().deserialize(it.replacePlaceholder(player)) })
         try {
             player.invokeMethod<Any>("openBook", book)
-            player.sendLang("open-guide", name)
+			player.sendLang("open-guide", "name" to name)
             if (!PluginDatabase.read(player.uniqueId.toString(), name)) {
                 PluginDatabase.write(player.uniqueId.toString(), name)
             }
